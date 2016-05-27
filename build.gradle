@@ -1,0 +1,29 @@
+group 'com.kerz'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+ext {
+  springBootVersion = '1.3.5.RELEASE'
+}
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.4.3'
+  compile 'org.apache.commons:commons-lang3:3.4'
+  compile 'org.codehaus.groovy:groovy-jsr223:2.4.6'
+  compile 'org.hibernate:hibernate-validator:5.2.4.Final'
+  compile 'org.apache.httpcomponents:httpclient:4.5.2'
+  compile 'com.jayway.jsonpath:json-path:2.2.0'
+  compile "org.springframework.boot:spring-boot-starter:$springBootVersion"
+  testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.13'
+}
