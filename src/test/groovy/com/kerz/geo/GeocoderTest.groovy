@@ -20,26 +20,39 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 )
 class GeocoderTest {
 
-  Logger log = LoggerFactory.getLogger(GeocoderTest)
+  static Logger log = LoggerFactory.getLogger(GeocoderTest)
+  
+  static String address = '151 Farmington Ave, Hartford CT 06108'
   
   @Autowired
-  Geocoder geocoder
+  MapzenGeocoder geocoder
+  
+  @Autowired
+  FailingGeocoder failingGeocoder
   
   @Before
-  void setUp() throws Exception {
+  void setUp() {
     log.debug('setup')
   }
 
   @After
-  void tearDown() throws Exception {
+  void tearDown() {
     log.debug('teardown')
   }
 
   @Test
-  void shouldWork() throws Exception {
-    String address = '151 Farmington Ave, Hartford CT 06108'
+  void shouldWork() {
     Point point = geocoder.geocode(address)
     assertNotNull(point)
-    log.info("geocoded address=[$address] to point=$point")
+  }
+  
+  @Test(expected = UnknownHostException)
+  void shouldFail() {
+    Point point = geocoder.geocode(address, uri: 'http://no.work.ie')
+  }
+  
+  @Test(expected = RuntimeException)
+  void shouldFailBad() {
+    Point point = failingGeocoder.geocode(address)
   }
 }

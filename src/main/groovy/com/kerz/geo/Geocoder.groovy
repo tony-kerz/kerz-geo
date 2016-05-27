@@ -1,5 +1,5 @@
 package com.kerz.geo
 
 interface Geocoder {
-  Point geocode(String address)
+  Point geocode(Map options, String address)
 }
