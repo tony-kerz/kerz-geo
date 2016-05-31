@@ -4,6 +4,7 @@ logging:
     com.kerz: DEBUG
 
 geocoder:
+  clazz: com.kerz.geo.mapzen.MapzenGeocoder
   uri: https://search.mapzen.com/v1/search
   key: search-ND7BVJ
   country: USA

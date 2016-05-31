@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
+import com.kerz.geo.mapzen.MapzenGeocoder
+
 @RunWith(SpringJUnit4ClassRunner)
 @SpringApplicationConfiguration(classes = [
   HttpClientConfiguration,
-  GeocoderConfiguration
+  HttpClientGeocoderConfiguration,
+  GeocoderTestConfiguration
   ]
 )
 class GeocoderTest {
@@ -46,7 +49,7 @@ class GeocoderTest {
     assertNotNull(point)
   }
   
-  @Test(expected = UnknownHostException)
+  @Test(expected = Exception)
   void shouldFail() {
     Point point = geocoder.geocode(address, uri: 'http://no.work.ie')
   }
