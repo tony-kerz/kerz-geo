@@ -42,7 +42,7 @@ abstract class HttpClientGeocoder implements Geocoder {
       if (status == HttpStatus.SC_OK) {
         HttpEntity entity = response.getEntity()
         String responseString = EntityUtils.toString(entity)
-        log.debug("geocode: response=${JsonOutput.prettyPrint(responseString)}")
+        log.trace("geocode: response=${JsonOutput.prettyPrint(responseString)}")
         point = getPoint(responseString)
         log.debug("geocode: point=$point")
       }

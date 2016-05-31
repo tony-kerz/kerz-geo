@@ -1,8 +1,9 @@
 group 'com.kerz'
-version '1.0-SNAPSHOT'
+version '1.0.0-SNAPSHOT'
 
 apply plugin: 'groovy'
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 
 repositories {
   mavenLocal()
@@ -26,4 +27,20 @@ dependencies {
 
 task wrapper(type: Wrapper) {
   gradleVersion = '2.13'
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allGroovy
+}
+
+publishing {
+  publications {
+      mavenJava(MavenPublication) {
+          from components.java
+
+          artifact sourceJar {
+              classifier "sources"
+          }
+      }
+  }
 }

@@ -11,6 +11,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties(prefix='geocoder')
 class GeocoderProperties {
   @NotNull
+  Class<? extends Geocoder> clazz
+  
+  @NotNull
   String uri
 
   @NotNull

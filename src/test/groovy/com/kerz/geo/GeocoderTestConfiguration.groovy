@@ -7,15 +7,10 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties([GeocoderProperties])
-public class GeocoderConfiguration {
+public class GeocoderTestConfiguration {
   
   @Autowired
   GeocoderProperties props
-  
-  @Bean
-  MapzenGeocoder geocoder() {
-    new MapzenGeocoder(uri: props.uri, key: props.key, country: props.country)
-  }
   
   @Bean
   FailingGeocoder failingGeocoder() {

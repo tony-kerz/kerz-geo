@@ -1,6 +1,8 @@
-package com.kerz.geo
+package com.kerz.geo.mapzen
 
 import com.jayway.jsonpath.JsonPath
+import com.kerz.geo.HttpClientGeocoder;
+import com.kerz.geo.Point;
 
 class MapzenGeocoder extends HttpClientGeocoder {
   
